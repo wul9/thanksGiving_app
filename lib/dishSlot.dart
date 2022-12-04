@@ -10,11 +10,9 @@ getImage(imgPath, color, borderWidth) {
       borderRadius: BorderRadius.circular(10),
       border: Border.all(color: color, width: borderWidth),
     ),
-    margin: const EdgeInsets.all(50),
     child: Image.asset(imgPath, fit: BoxFit.fill),
   );
 }
-
 class DishSlot extends StatefulWidget {
   const DishSlot(this.imgPath, this.details, this.title, {super.key});
   final String imgPath;
@@ -28,10 +26,11 @@ class DishSlot extends StatefulWidget {
 class _DishSlotState extends State<DishSlot> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => DishDetails(widget.imgPath, widget.details, widget.title))),
-        child: getImage(widget.imgPath, Colors.blueGrey, 6));
+    return Card(
+      margin: const EdgeInsets.all(50),
+      child: Column(children: [
+      GestureDetector(onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => DishDetails(widget.imgPath, widget.details, widget.title))), child: getImage(widget.imgPath, Colors.blueGrey, 6)), 
+      Text(widget.title, style: const TextStyle(fontSize: 30, fontFamily: 'Times New Roman', color: Colors.black),)]));
   }
 }
 
@@ -56,9 +55,7 @@ class _DishDetailsState extends State<DishDetails> {
           child: Column(
         children: [
           Expanded(child: getImage(widget.imgPath, Colors.blueGrey, 6)),
-          Expanded(
-              child: ListView(
-                  padding: const EdgeInsets.all(15), children: widget.details))
+          Expanded(child: ListView(padding: const EdgeInsets.all(15), children: widget.details))
         ],
       )),
       bottomNavigationBar: BottomNavigationBar(
