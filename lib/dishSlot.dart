@@ -4,9 +4,8 @@ import 'dishes.dart';
 
 getImage(imgPath, color, borderWidth) {
   return Container(
-    alignment: Alignment.center,
     decoration: BoxDecoration(
-      image: DecorationImage(image: AssetImage(imgPath), fit: BoxFit.cover),
+      image: DecorationImage(image: AssetImage(imgPath), fit: BoxFit.fill),
       borderRadius: BorderRadius.circular(10),
       border: Border.all(color: color, width: borderWidth),
     ),
